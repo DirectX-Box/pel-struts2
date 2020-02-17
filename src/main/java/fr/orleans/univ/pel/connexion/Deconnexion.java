@@ -24,6 +24,8 @@
 package fr.orleans.univ.pel.connexion;
 
 import com.opensymphony.xwork2.ActionSupport;
+import facade.FacadeParis;
+import fr.orleans.univ.pel.support.PelActionSupport;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -34,7 +36,7 @@ import org.apache.struts2.interceptor.SessionAware;
  * 
  * @author DirectX-Box
  */
-public class Deconnexion extends ActionSupport implements SessionAware {
+public class Deconnexion extends PelActionSupport {
     
     /**
      * La Map stockant les éléments de session.
@@ -55,6 +57,8 @@ public class Deconnexion extends ActionSupport implements SessionAware {
     @Override
     public String execute()
     {
+        FacadeParis modele = this.getModele();
+        modele.deconnexion(this.pseudonyme);
         this.session.clear();
         return "success";
     }
